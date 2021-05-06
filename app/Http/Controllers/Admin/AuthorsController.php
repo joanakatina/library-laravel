@@ -37,6 +37,16 @@ class AuthorsController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'first_name' => 'required|alpha|min:3',   // laukas privalomas|galima įvesti tik raides
+            'middle_name' => 'nullable|alpha|max:100',  // laukas gali būti tuščias|galima įvesti tik raides
+            'last_name' => 'required|alpha',
+            'gender' => 'required'
+        ],[
+            'first_name.required' => 'Vardas yra privalomas laukas.',
+            'first_name.alpha' => 'Vardas gali būti sudarytas tik iš raidžių.'
+        ]);
+
         Author::create($request->all());
         return redirect('admin/authors')->with('success', 'Author added successfully.');
     }
@@ -74,6 +84,16 @@ class AuthorsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'first_name' => 'required|alpha',
+            'middle_name' => 'nullable|alpha',
+            'last_name' => 'required|alpha',
+            'gender' => 'required'
+        ],[
+            'first_name.required' => 'Vardas yra privalomas laukas.',
+            'first_name.alpha' => 'Vardas gali būti sudarytas tik iš raidžių.'
+        ]);
+
         $author = Author::findOrFail($id);
         $author->update($request->all());   // įvykdoma SQL užklausa, kuri atnaujina duomenis DB
         return redirect('admin/authors')->with('success', 'Author updated successfully.');

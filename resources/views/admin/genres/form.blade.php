@@ -21,16 +21,13 @@
                 {!! Form::open(['url' => 'admin/genres']) !!}
             @endif
 
-            <div class="form-group">
-                {!! Form::label('title', 'Title: ', ['class' => 'col-sm-3']) !!}
-                <div class="col-sm-6">
-                    {!! Form::text('title', null, ['class' => 'form-control', 'required' => 'required']) !!}
-                </div>
+            <div class="form-group col-sm-6">
+                {!! Form::label('title', 'Title: ') !!}
+                {!! Form::text('title', null, ['class' => 'form-control'.($errors->has('title') ? ' is-invalid' : ''), 'required' => 'required']) !!}
+                {!! $errors->first('title', '<div class="invalid-feedback">:message</div>') !!}
             </div>
-            <div class="form-group">
-                <div class="col-sm-offset-3 col-sm-3">
-                    {!! Form::submit('Save', ['class' => 'btn btn-primary form-control']) !!}
-                </div>
+            <div class="form-group col-sm-3">
+                {!! Form::submit('Save', ['class' => 'btn btn-primary form-control']) !!}
             </div>
             {!! Form::close() !!}
         </div>

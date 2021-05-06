@@ -30,6 +30,7 @@ Route::group(['middleware' => ['role:admin|librarian']], function () {
     Route::resource('admin/publishers', App\Http\Controllers\Admin\PublishersController::class);
     Route::resource('admin/books', App\Http\Controllers\Admin\BooksController::class);
     Route::resource('admin/genres', App\Http\Controllers\Admin\GenresController::class);
+    Route::resource('admin/countries', App\Http\Controllers\Admin\CountriesController::class);
 });
 
 Route::group(['middleware' => ['role:admin']], function () {

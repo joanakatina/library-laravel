@@ -37,6 +37,11 @@ class PublishersController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required',
+            'website' => 'nullable|active_url',
+        ]);
+
         Publisher::create($request->all());
         return redirect('admin/publishers')->with('success', 'Publisher added successfully.');
     }
@@ -74,6 +79,11 @@ class PublishersController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'title' => 'required',
+            'website' => 'nullable|active_url',
+        ]);
+
         $publisher = Publisher::findOrFail($id);
         $publisher->update($request->all());
         return redirect('admin/publishers')->with('success', 'Publisher updated successfully.');

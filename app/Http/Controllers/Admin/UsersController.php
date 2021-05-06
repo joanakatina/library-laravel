@@ -42,6 +42,12 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|confirmed'
+        ]);
+
         $user = User::create($request->all());
         $user->assignRole($request->roles);
 
@@ -91,11 +97,17 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,'.$id
+        ]);
+        print_r($request->all());
+
         $user = User::findOrFail($id);
         $user->update($request->all());
         $user->syncRoles($request->roles);
 
-        return redirect('admin/users')->with('success', 'User updated successfully.');
+        //return redirect('admin/users')->with('success', 'User updated successfully.');
     }
 
     /**

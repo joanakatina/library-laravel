@@ -10,6 +10,9 @@
     <link href="{{ asset('bower_components/fontawesome/css/all.min.css') }}" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="{{ asset('css/adminlte.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap-boxautocomplete.css') }}" rel="stylesheet">
+
+    <script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
 </head>
 <body class="hold-transition sidebar-mini">
 <!-- Site wrapper -->
@@ -84,6 +87,12 @@
                             <p>Genres</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ url('/admin/countries') }}" class="nav-link">
+                            <i class="nav-icon fas fa-globe"></i>
+                            <p>Countries</p>
+                        </a>
+                    </li>
                     @role('admin')
                     <li class="nav-item">
                         <a href="{{ url('/admin/users') }}" class="nav-link">
@@ -154,10 +163,10 @@
 <!-- ./wrapper -->
 
 <!-- JavaScripts -->
-<script src="{{ asset('bower_components/jquery/dist/jquery.min.js') }}"></script>
 <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.bundle.js') }}"></script>
 <script src="{{ asset('bower_components/fontawesome/js/all.min.js') }}"></script>
 <script src="{{ asset('js/adminlte.min.js') }}"></script>
+<script src="{{ asset('js/boxautocomplete.jquery.js') }}"></script>
 
 </body>
 </html>

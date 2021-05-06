@@ -47,6 +47,10 @@
                         <td>Genre</td>
                         <td>{{ $book->genre->title }}</td>
                     </tr>
+                    <tr>
+                        <td>Cover</td>
+                        <td><img src="{{ url('uploads/covers', $book->cover) }}"></td>
+                    </tr>
                     </tbody>
                 </table>
             </div>

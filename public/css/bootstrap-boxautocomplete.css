@@ -1,0 +1,27 @@
+.ba-box-autocomplete .list-group
+{
+	padding: 5px;
+	height: 250px;
+	overflow-y: scroll;
+	border: 1px solid #cccccc;
+}
+.ba-search-row {
+	margin-bottom: 5px;
+}
+.ba-search {
+	margin-right: 5px;
+	border-radius: .25rem !important;
+}
+.ba-box-autocomplete .list-group-item
+{
+	padding: 5px;
+}
+.ba-box-autocomplete .list-group-item .ba-name
+{
+	margin: 0 10px;
+	line-height: 30px;
+}
+.list-group-item:nth-child(2) {
+	border-top-right-radius: .25rem;
+	border-top-left-radius: .25rem;
+}

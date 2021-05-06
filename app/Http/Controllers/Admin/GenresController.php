@@ -37,6 +37,10 @@ class GenresController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required'
+        ]);
+
         Genre::create($request->all());
         return redirect('admin/genres')->with('success', 'Genre added successfully.');
     }
@@ -74,6 +78,10 @@ class GenresController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'title' => 'required'
+        ]);
+
         $genre = Genre::findOrFail($id);
         $genre->update($request->all());
         return redirect('admin/genres')->with('success', 'Genre updated successfully.');

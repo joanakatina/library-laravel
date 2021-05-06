@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Author;
+use App\Models\Country;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
 
-class RolesController extends Controller
+class CountriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +16,9 @@ class RolesController extends Controller
      */
     public function index()
     {
-        $roles = Role::all();
-        return view('admin.roles.index', compact('roles'));
+        //$countries = Country::all();
+        $countries = Country::paginate(25);
+        return view('admin.countries.index', compact('countries'));
     }
 
     /**
@@ -26,7 +28,7 @@ class RolesController extends Controller
      */
     public function create()
     {
-        return view('admin.roles.form');
+        return view('admin.countries.form');
     }
 
     /**
@@ -38,11 +40,12 @@ class RolesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'country' => 'required|alpha|digits:2',
             'name' => 'required'
         ]);
 
-        Role::create($request->all());
-        return redirect('admin/roles')->with('success', 'Role added successfully.');
+        Country::create($request->all());
+        return redirect('admin/countries')->with('success', 'Country added successfully.');
     }
 
     /**
@@ -53,8 +56,8 @@ class RolesController extends Controller
      */
     public function show($id)
     {
-        $role = Role::findOrFail($id);
-        return view('admin.roles.show', compact('role'));
+        $country = Country::findOrFail($id);
+        return view('admin.countries.show', compact('country'));
     }
 
     /**
@@ -65,8 +68,8 @@ class RolesController extends Controller
      */
     public function edit($id)
     {
-        $role = Role::findOrFail($id);
-        return view('admin.roles.form', compact('role'));
+        $country = Country::findOrFail($id);
+        return view('admin.countries.form', compact('country'));
     }
 
     /**
@@ -79,13 +82,13 @@ class RolesController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
+            'country' => 'required|alpha|digits:2',
             'name' => 'required'
         ]);
 
-        $role = Role::findOrFail($id);
-        $role->update($request->all());
-
-        return redirect('admin/roles')->with('success', 'Role updated successfully.');
+        $country = Country::findOrFail($id);
+        $country->update($request->all());
+        return redirect('admin/countries')->with('success', 'Country updated successfully.');
     }
 
     /**
@@ -96,9 +99,8 @@ class RolesController extends Controller
      */
     public function destroy($id)
     {
-        $role = Role::findOrFail($id);
-        $role->delete();
-
-        return redirect('admin/roles')->with('success', 'Role deleted successfully.');
+        $country = Country::findOrFail($id);
+        $country->delete();
+        return redirect('admin/countries')->with('success', 'Country deleted successfully.');
     }
 }

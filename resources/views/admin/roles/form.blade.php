@@ -20,17 +20,13 @@
                 {!! Form::open(['url' => 'admin/roles', 'class' => 'needs-validation']) !!}
             @endif
 
-            <div class="form-group">
-                {!! Form::label('name', 'Name: ', ['class' => 'col-sm-3']) !!}
-                <div class="col-sm-6">
-                    {!! Form::text('name', null, ['class' => 'form-control'.($errors->has('name') ? ' is-invalid' : ''), 'required' => 'required']) !!}
-                    {!! $errors->first('name', '<div class="invalid-feedback">:message</div>') !!}
-                </div>
+            <div class="form-group col-sm-6">
+                {!! Form::label('name', 'Name: ') !!}
+                {!! Form::text('name', null, ['class' => 'form-control'.($errors->has('name') ? ' is-invalid' : ''), 'required' => 'required']) !!}
+                {!! $errors->first('name', '<div class="invalid-feedback">:message</div>') !!}
             </div>
-            <div class="form-group">
-                <div class="col-sm-offset-3 col-sm-3">
-                    {!! Form::submit('Save', ['class' => 'btn btn-primary form-control']) !!}
-                </div>
+            <div class="form-group col-sm-3">
+                {!! Form::submit('Save', ['class' => 'btn btn-primary form-control']) !!}
             </div>
             {!! Form::close() !!}
         </div>

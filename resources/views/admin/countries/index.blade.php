@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 
-@section('title', 'Books')
+@section('title', 'Countries')
 
 @section('content')
     <div class="card">
         <div class="card-header">
-            <a href="{{ url('admin/books/create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add book</a>
+            <a href="{{ url('admin/countries/create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Add country</a>
         </div>
         <div class="card-body">
             @if(Session::has('success'))
@@ -25,33 +25,25 @@
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Title</th>
-                        <th>ISBN</th>
-                        <th>Year</th>
-                        <th>Pages</th>
-                        <th>Quantity</th>
-                        <th>Publisher</th>
-                        <th>Genre</th>
-                        <th>Cover</th>
+                        <th>Code</th>
+                        <th>Latitude</th>
+                        <th>Longitude</th>
+                        <th>Country</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($books as $item)
+                    @foreach($countries as $item)
                     <tr>
                         <td>{{ $item->id }}</td>
-                        <td>{{ $item->title }}</td>
-                        <td>{{ $item->isbn }}</td>
-                        <td>{{ $item->year }}</td>
-                        <td>{{ $item->pages }}</td>
-                        <td>{{ $item->quantity }}</td>
-                        <td>{{ $item->publisher->title }}</td>
-                        <td>{{ $item->genre->title }}</td>
-                        <td>{{ $item->cover }}</td>
+                        <td>{{ $item->country }}</td>
+                        <td>{{ $item->latitude }}</td>
+                        <td>{{ $item->longitude }}</td>
+                        <td>{{ $item->name }}</td>
                         <td>
-                            <a href="{{ url('admin/books/'.$item->id.'/edit') }}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Edit</a>
-                            <a href="{{ url('admin/books/'.$item->id) }}" class="btn btn-success btn-sm"><i class="fas fa-eye"></i> View</a>
-                            {!! Form::open(['method'=>'DELETE', 'url' => ['admin/books', $item->id], 'style' => 'display:inline']) !!}
+                            <a href="{{ url('admin/countries/'.$item->id.'/edit') }}" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i> Edit</a>
+                            <a href="{{ url('admin/countries/'.$item->id) }}" class="btn btn-success btn-sm"><i class="fas fa-eye"></i> View</a>
+                            {!! Form::open(['method'=>'DELETE', 'url' => ['admin/countries', $item->id], 'style' => 'display:inline']) !!}
                             {!! Form::button('<i class="fas fa-trash-alt"></i> Delete', ['class' => 'btn btn-danger btn-sm', 'type' => 'submit']) !!}
                             {!! Form::close() !!}
                         </td>
@@ -59,6 +51,7 @@
                     @endforeach
                     </tbody>
                 </table>
+                {{ $countries->links() }}
             </div>
         </div>
     </div>
